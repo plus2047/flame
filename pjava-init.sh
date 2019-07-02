@@ -13,5 +13,5 @@ echo 'source this file to rewrite "java" command!'
 cd perf-map-agent && cmake . && make && cd ..
 cp perf-map-agent/out/*.jar perf-map-agent/out/*.so ./
 
-cmd="alias java=$JAVA_HOME/bin/java -XX:+PreserveFramePointer"
-echo $cmd && $cmd
+alias java="$JAVA_HOME/bin/java -XX:+PreserveFramePointer"
+alias java

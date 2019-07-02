@@ -1,3 +1,5 @@
+#!/bin/bash
+
 [ $# -lt 2 ] && echo 'usage: pjava-analyse.sh sample_frequence record_period [output.svg]' && exit
 
 sample_frequency=$1
@@ -11,5 +13,6 @@ script_home=$(dirname $(readlink -f "$0"))
 source $script_home/pjava-setting.sh
 
 sudo perf record -F $sample_frequency -a -g -- sleep $record_period
-sudo $SCRIPT_PATH/jmaps.sh
+sudo $script_home/jmaps.sh
 sudo perf script | stackcollapse-perf.pl | flamegraph.pl --color=java --hash > $output
+sudo /bin/rm perf.data*
